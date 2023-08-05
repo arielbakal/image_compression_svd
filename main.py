@@ -4,8 +4,12 @@ import sys
 import numpy as np
 import imageio.v2 as imageio
 
-def svd_truncation(matrix, rank):
+def svd_truncation(matrix, percentage):
     U, s, Vt = np.linalg.svd(matrix)
+
+    rank = round( len(s) * (percentage / 100) )
+
+    print(rank)
 
     U_truncated = U[:,:rank]
     Vt_truncated = Vt[:rank]
@@ -26,13 +30,13 @@ def matrix_padding(shape, U_truncated, Vt_truncated, s_truncated):
     matrix_padded = U_padded @ Z_padded @ Vt_padded
     return matrix_padded
 
-def compress_image(path, rank):
+def compress_image(path, percentage):
 
     image = imageio.imread(path) # read image as a matrix
 
     # Compression for mxn images
     if len(image.shape) == 2:
-      shape, U_truncated, Vt_truncated, s_truncated = svd_truncation(image, rank)
+      shape, U_truncated, Vt_truncated, s_truncated = svd_truncation(image, percentage)
       compressed_image = matrix_padding(shape, U_truncated, Vt_truncated, s_truncated).clip(0, 255).astype(np.uint8)
       imageio.imwrite('compressed_image.jpg', compressed_image)
 
@@ -42,7 +46,7 @@ def compress_image(path, rank):
 
       # Compressing the 3 channels
       for k in range(3):
-        shape, U_truncated, Vt_truncated, s_truncated = svd_truncation(image[:,:,k], rank)
+        shape, U_truncated, Vt_truncated, s_truncated = svd_truncation(image[:,:,k], percentage)
         compressed_channel = matrix_padding(shape, U_truncated, Vt_truncated, s_truncated).clip(0, 255).astype(np.uint8)
         image_channels.append(compressed_channel)
 
