@@ -7,9 +7,7 @@ import imageio.v2 as imageio
 def svd_truncation(matrix, percentage):
     U, s, Vt = np.linalg.svd(matrix)
 
-    rank = round( len(s) * (percentage / 100) )
-
-    print(rank)
+    rank = round( len(s) * (int(percentage) / 100) )
 
     U_truncated = U[:,:rank]
     Vt_truncated = Vt[:rank]
@@ -58,9 +56,10 @@ def compress_image(path, percentage):
       print('only mxn or mxnx3 images')
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python main.py <image_location>")
+    if len(sys.argv) != 3:
+        print("Usage: python main.py <image_location> <%% of compression>")
         sys.exit(1)
     
     image_location = sys.argv[1]
-    compress_image(image_location, 20)
+    compression_percentage = sys.argv[2]
+    compress_image(image_location, compression_percentage)
