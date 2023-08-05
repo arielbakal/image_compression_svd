@@ -57,7 +57,7 @@ def compress_image(path, percentage):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python main.py <image_location> <%% of compression>")
+        print("Usage: python main.py <image_location> <compression percentage>")
         sys.exit(1)
     
     image_location = sys.argv[1]
