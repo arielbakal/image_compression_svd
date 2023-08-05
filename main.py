@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import numpy as np
 import imageio.v2 as imageio
 
@@ -51,3 +52,4 @@ def compress_image(path, rank):
 
     else:
       print('only mxn or mxnx3 images')
+
