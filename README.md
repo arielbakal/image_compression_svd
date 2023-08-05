@@ -16,4 +16,4 @@ This **compression percentage** must be expressed in terms of percentage, not de
 
 Then the compressed image appears inside the repository's folder named 'compressed_image'
 
-__NOTE__ : This algorithm only works with mxn and mxnx3 images.
+__NOTE__ : This algorithm only works with mxn and mxnx3 images and saves the compressed image with jpg
