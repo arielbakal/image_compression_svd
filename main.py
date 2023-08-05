@@ -53,3 +53,9 @@ def compress_image(path, rank):
     else:
       print('only mxn or mxnx3 images')
 
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python main.py <image_location>")
+        sys.exit(1)
+    
+    image_location = sys.argv[1]
