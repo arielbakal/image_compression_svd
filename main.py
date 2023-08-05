@@ -59,3 +59,4 @@ if __name__ == "__main__":
         sys.exit(1)
     
     image_location = sys.argv[1]
+    compress_image(image_location, 20)
