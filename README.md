@@ -8,7 +8,7 @@ Feel free to suggest or ask anything!
 
 ## Usage
 
-``` 
+```bash
 python main.py <image_location> <compression percentage>
 ```
 
